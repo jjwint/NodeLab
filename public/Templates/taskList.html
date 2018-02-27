@@ -1,6 +1,6 @@
 <input type="text" placeholder="Filter your to-dos" ng-model="toDoFilter">
 <ol>
-	<li ng-repeat="item in $ctrl.words | filter: toDoFilter track by $index" hover-state>{{ item }}
+	<li ng-repeat="item in $ctrl.words | filter: toDoFilter track by $index" hover-state>{{ item.text }}
 		<i id="closingX"class="material-icons" ng-click="$ctrl.remove($index)">close</i></li>
 </ol>
 <input type="text" placeholder="Add your to-do" ng-model="toDoItem" id="inputEl">
