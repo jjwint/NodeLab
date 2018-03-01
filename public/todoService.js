@@ -15,10 +15,27 @@
  				url: "/tasks"
  			}).then(function(response) {
  				return response.data;
- 			})
- 		}
+ 			});
+ 		};
 
- 		function deleteTas
+ 		function addTask(item) {
+ 			return $http({
+ 				method: "POST",
+ 				url: "/tasks",
+ 				data: TodoText
+ 			}).then(function(response) {
+ 				console.log("push post");
+ 			});
+
+ 		};
+
+ 		function deleteTask(itemId) {
+ 			console.log
+ 			return $http({
+ 				method: "DELETE"
+ 				url: "/tasks/" + itemId
+ 			});
+ 		};
 
 //Old lab
  	// 	var inputListItems = [];

@@ -1,24 +1,51 @@
 (function() {
+
 	function FormController(TodoService) {
 		var vm = this;
 		refreshDataFromServer();
 
-		TodoService.getAllTasks().then(function(tasks) {
-			vm.todoList = tasks;
-		});
-
 		vm.setData = function(newItemText) {
 			var newTask = {
 				text: newItemText
-			}
-			TodoService.addTask(newTask);
-			console.log(newItemText);
-			console.log(newTask);
+			};
+			TodoService.addTask(newTask).then(function() {
+				refreshDataFromServer();
+			});
 		}
 
-		vm.removeItem = function(index) {
-
+		vm.removeItem = function(taskId) {
+			TodoService.deleteTask(taskId).then(refreshDataFromServer);
 		}
+
+		function refreshDataFromServer() {
+			TodoService.getAllTasks(.then(function(tasks) {
+				vm.todoList = tasks;
+			});
+		}
+	
+	angular
+		.module("app")
+		.controller("FormController", FormController);
+
+
+
+
+		// TodoService.getAllTasks().then(function(tasks) {
+		// 	vm.todoList = tasks;
+		// });
+
+		// vm.setData = function(newItemText) {
+		// 	var newTask = {
+		// 		text: newItemText
+		// 	}
+		// 	TodoService.addTask(newTask);
+		// 	console.log(newItemText);
+		// 	console.log(newTask);
+		// }
+
+		// vm.removeItem = function(index) {
+
+		// }
 
 	// 	vm.updateInfo = function(item) {
 	// 		TodoService.setData(item);
