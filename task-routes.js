@@ -23,8 +23,11 @@ router.delete("/tasks/:id", function(req, res) {
 	res.send("Deleted.");
 });
 
-router.put("/tasks/:id", function(req, res) {
-	
+router.put("/tasks", function(req, res) {
+	var id = req.params.id;
+	var task = req.body;
+	taskDb.update(id, task);
+	res.status(201).send("Updated.");
 })
 
 module.exports = router;

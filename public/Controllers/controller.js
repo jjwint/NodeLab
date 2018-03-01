@@ -1,17 +1,23 @@
 (function() {
-
 	function FormController(TodoService) {
 		var vm = this;
+		refreshDataFromServer();
+
 		TodoService.getAllTasks().then(function(tasks) {
 			vm.todoList = tasks;
 		});
 
-		vm.setData = function(newItem) {
-
+		vm.setData = function(newItemText) {
+			var newTask = {
+				text: newItemText
+			}
+			TodoService.addTask(newTask);
+			console.log(newItemText);
+			console.log(newTask);
 		}
 
 		vm.removeItem = function(index) {
-			
+
 		}
 
 	// 	vm.updateInfo = function(item) {
